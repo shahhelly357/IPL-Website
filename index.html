@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var savedData = JSON.parse(localStorage.getItem("userData")) || [];
+        displayData(savedData);
+        function displayData(data) {
+            var html = "";
+            for (var i = 0; i < data.length; i++) {
+                html += data[i] + "<br>";
+            }
+            $(".d2").html(html);
+            $(".box").val("");
+            $(".box1").val("");
+            $(".box").focus();
+        }
+        // $(".btn").click(function () {
+        //     if ($(".box").val() === "" || $(".box1").val() === "") {
+        //         alert("Please fill in both input fields.");
+        //     } else {
+        //         var inputValue1 = $(".box").val();
+        //         var inputValue2 = $(".box1").val();
+        //         var newData = inputValue1 + "<br>" + inputValue2;
+        //         savedData.push(newData);
+        //         localStorage.setItem("userData", JSON.stringify(savedData));
+        //         displayData(savedData);
+        //     }
+        // });
+        $(".btn").click(function () {
+            var inputValue1 = $(".box").val();
+            var inputValue2 = $(".box1").val();
+
+            if (inputValue1.trim() === "" || inputValue2.trim() === "") {
+                alert("Please fill in both input fields.");
+                return;
+            }
+
+            var newData = inputValue1 + " ~<br>" + inputValue2;
+            savedData.push(newData);
+            localStorage.setItem("userData", JSON.stringify(savedData));
+            displayData(savedData);
+
+            $(".box").val("");
+            $(".box1").val("");
+        });
+
+        function displayData(data) {
+            var html = "";
+            for (var i = 0; i < data.length; i++) {
+                html += "<p>" + data[i] + " <button class='deleteBtn' data-index='" + i + "'>Delete</button></p>";
+            }
+            $(".d2").html(html);
+        }
+
+        $(document).on("click", ".deleteBtn", function () {
+            var index = $(this).data("index");
+            savedData.splice(index, 1);
+            localStorage.setItem("userData", JSON.stringify(savedData));
+            displayData(savedData);
+        });
+
+
+
+        $("#intro").click(function () {
+            $(".introduction").show();
+            $(".history").hide();
+            $(".people").hide();
+            $(".finance").hide();
+            $(".outlook").hide();
+        })
+        $("#hist").click(function () {
+            $(".history").show();
+            $(".introduction").hide();
+            $(".people").hide();
+            $(".finance").hide();
+            $(".outlook").hide();
+        })
+        $("#people").click(function () {
+            $(".people").show();
+            $(".history").hide();
+            $(".introduction").hide();
+            $(".finance").hide();
+            $(".outlook").hide();
+        })
+        $("#fin").click(function () {
+            $(".finance").show();
+            $(".history").hide();
+            $(".people").hide();
+            $(".introduction").hide();
+            $(".outlook").hide();
+        })
+        $("#outlook").click(function () {
+            $(".outlook").show();
+            $(".history").hide();
+            $(".people").hide();
+            $(".finance").hide();
+            $(".introduction").hide();
+        })
+    });
+
+</script>
+
+<body>
+    <!-- home -->
+    <div id="home">
+        <img src="../IPL Website/logo.avif" class="logo lo">
+        <img src="../IPL Website/logo.avif" class="logo">
+        <img src="../IPL Website/logo.avif" class="logo lo"><br><br>
+        <a href="#team" class="hm">HOME</a>
+        <a href="#about" class="abt">ABOUT</a>
+        <a href="#gallery" class="gallery">GALLERY</a>
+        <a href="#profile" class="teams">TEAM PROFILE</a>
+        <a href="#record" class="stats">STATISTICS AND RECORDS</a>
+        <a href="#live" class="live">LIVE SESSION</a>
+        <img src="../IPL Website/team img.avif" alt="" class="team" id="team">
+    </div>
+    <!-- about -->
+    <div id="about">
+        <h1 class="heading">ABOUT KKR</h1>
+        <div class="title">
+            <p class="link" id="intro">Introduction</p>
+            <p class="link" id="hist">History</p>
+            <p class="link" id="people">Key People</p>
+            <p class="link" id="fin">Financial Performance</p>
+            <p class="link" id="outlook">Future Outlook</p>
+        </div>
+        <div class="introduction">
+            <p><a>K</a>olkata Knight Riders (KKR) are a dynamic and influential franchise in the Indian Premier League
+                (IPL), representing the vibrant city of Kolkata, West Bengal.<br>Established in 2008, the team has
+                carved its niche in the league, captivating cricket enthusiasts with its spirited performances and
+                unwavering fan base.<br> Led by co-owners Shah Rukh Khan, Juhi Chawla, and Jay Mehta, KKR embodies the
+                essence of Kolkata's rich cultural heritage and fervent love for cricket.<br>Their distinctive team
+                colors of purple and gold illuminate the cricketing landscape, symbolizing resilience, passion, and
+                determination.<br>The team's home ground, the iconic Eden Gardens, pulsates with energy and excitement
+                whenever KKR steps onto the field.The stadium reverberates with the chants of loyal supporters, creating
+                an electrifying atmosphere that fuels the players' performances.
+                <br>Beyond cricketing excellence, Kolkata Knight Riders are committed to making a positive impact in
+                society.<br>Through their foundation, they actively engage in various social initiatives, ranging from
+                education and healthcare to youth empowerment, demonstrating their dedication to community development.
+                In essence, Kolkata Knight Riders embody the spirit of Kolkata – resilient, passionate, and always ready
+                to conquer new horizons. With each IPL season, they continue to inspire fans, leaving an indelible mark
+                on the cricketing landscape of India.
+            </p>
+        </div>
+        <div class="history">
+            <p><a>Here's a comprehensive overview of Kolkata Knight Riders' history in the Indian Premier League (IPL)
+                    until 2023:</a><br><br>
+                <b>2008 - 2010: The Formative Years</b><br>
+                Kolkata Knight Riders (KKR) was established as one of the original franchises in the inaugural IPL
+                season in 2008.
+                Led by Sourav Ganguly, KKR struggled in the early seasons, failing to qualify for the playoffs.
+                Despite having star players like Chris Gayle and Brendon McCullum, the team faced consistency issues and
+                finished towards the bottom of the table.<br><br>
+
+                <b>2011 - 2012: Change in Leadership and Maiden Triumph</b><br>
+                In 2011, Gautam Gambhir was appointed captain, bringing a change in fortune for KKR.
+                The team reached the playoffs for the first time, showcasing improved performances.
+                In 2012, KKR clinched their maiden IPL title under Gambhir's captaincy, defeating the Chennai Super
+                Kings in a thrilling final.<br><br>
+
+                <b>2013 - 2014: Back-to-Back Titles</b><br>
+                KKR continued their success in the following seasons, reaching the playoffs consistently.
+                In 2014, they secured their second IPL title by defeating the Kings XI Punjab in the final.
+                Sunil Narine emerged as a key player for the team with his spin bowling and explosive batting.<br><br>
+
+                <b>2015 - 2017: Mixed Performances</b><br>
+                Despite retaining a strong core, KKR experienced mixed performances in these seasons.
+                They reached the playoffs in 2016 but failed to advance beyond the eliminator stage.
+                Changes in personnel and strategies were made to address areas of improvement.<br><br>
+
+                <b>2018 - 2019: Resurgence under Karthik's Captaincy</b><br>
+                Dinesh Karthik was appointed captain in 2018, leading KKR to a resurgence.
+                The team reached the playoffs and finished third in the points table.
+                Andre Russell emerged as a match-winner with his explosive batting and effective bowling.
+                KKR continued their strong performances in 2019, narrowly missing out on the playoffs.<br></br>
+
+                <b>2020 - 2021: Challenges and Adaptation</b><br>
+                The COVID-19 pandemic disrupted the 2020 IPL season, which was held in the United Arab Emirates.
+                KKR faced challenges but managed to qualify for the playoffs, finishing fifth in the points table.
+                In 2021, despite a promising start, KKR struggled with consistency and finished seventh in the points
+                table, missing out on the playoffs.<br><br>
+
+                <b>2022 - 2023: Continuing Evolution</b><br>
+                KKR continued to evolve in the subsequent seasons, focusing on strengthening their squad.
+                They introduced new talent and strategies, aiming for further success in the IPL.
+                The team remained competitive, showcasing resilience and determination on the field.
+                Throughout their journey, Kolkata Knight Riders have remained a prominent and influential franchise in
+                the IPL, captivating fans with their thrilling performances and iconic moments. As they continue to
+                strive for excellence, the legacy of KKR in the IPL continues to unfold, with each season bringing new
+                challenges and opportunities for success.
+            </p>
+        </div>
+        <div>
+            <div class="list">
+                <div class="people"><img src="../IPL Website/shahrukh photo.jpg" alt="">
+                    <div class="layer">
+                        <p><b>SHAHRUKH KHAN</b><br><br>Shah Rukh Khan's ownership of the Kolkata Knight Riders (KKR) has
+                            been marked by his
+                            enthusiastic support for the team and his active involvement in promoting it. He's often
+                            seen cheering for
+                            KKR during matches and has played a crucial role in shaping the team's brand image. Khan's
+                            charisma and star power have undoubtedly contributed to KKR's popularity both on and off the
+                            cricket field.</p>
+                    </div>
+                </div>
+                <div class="people"><img src="../IPL Website/juhi chawla.jpg" alt="">
+                    <div class="layer">
+                        <p><b>JUHI CHAWLA</b><br><br>Juhi Chawla, the acclaimed Bollywood actress known for her
+                            versatility and charm, holds a
+                            prominent position as one of the co-owners of the Kolkata Knight Riders (KKR) in the Indian
+                            Premier League (IPL).Her involvement with KKR reflects not only her passion for cricket but
+                            also
+                            her keen business acumen. Chawla's presence as an owner brings a unique blend of glamour and
+                            astuteness to the team, contributing to its overall success and appeal both on and off the
+                            field.</p>
+                    </div>
+                </div>
+                <div class="people"><img src="../IPL Website/jay mehta.jpg" alt="">
+                    <div class="layer">
+                        <p><b>JAY MEHTA</b><br><br>Jay Mehta, a prominent Indian businessman, is renowned as one of the
+                            co-owners of the Kolkata
+                            Knight Riders (KKR) franchise in the prestigious Indian Premier League (IPL).Jay Mehta, a
+                            prominent Indian businessman, is renowned as one of the co-owners of the Kolkata Knight
+                            Riders
+                            (KKR) franchise in the prestigious Indian Premier League (IPL).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="finance">
+            <p>Currently, Knight Riders are the second-richest franchise in the league, with a net worth of <b>INR 740
+                    crore</b>.</p>
+            <p>KKR annual revenue for 2023 was $14.499B, a 154.19% increase from 2022. KKR annual revenue for 2022 was
+                $5.704B, a 64.85% decline from 2021. KKR annual revenue for 2021 was $16.226B, a 283.51% increase from
+                2020.</p>
+        </div>
+        <div class="outlook">
+            <p><b>Here are some aspects that could influence the future outlook of KKR:
+                    Team Performance:</b><br><br>The team's performance in upcoming seasons will play a crucial role in
+                determining its future outlook. Factors such as player form, team dynamics, and strategic decisions made
+                by the coaching staff and management will impact KKR's success on the field.
+                <br><br><b>Player Retention and Recruitment:</b>The retention of key players and recruitment of new
+                talent during IPL auctions will significantly shape KKR's squad strength and competitiveness. Effective
+                player management and strategic acquisitions can enhance the team's chances of success.
+                <br><br><b>Coaching and Management:</b> The leadership provided by the coaching staff and management
+                team, including the head coach, support staff, and franchise owners, can influence the team's
+                performance and overall direction.
+                <br><br>
+                < b>Fan Engagement and Support:</b> Fan engagement and support play a crucial role in the success of any
+                    sports team. KKR's ability to maintain a strong fan base and create a vibrant matchday atmosphere at
+                    Eden Gardens could contribute to its long-term sustainability and success.
+                    <br><br><b>Marketability and Brand Building:</b> KKR's efforts to enhance its brand value through
+                    marketing initiatives, community engagement programs, and partnerships with sponsors and
+                    stakeholders can impact its commercial success and financial stability.
+                    <br><br><b>IPL Governance and Market Dynamics:</b> Developments in the IPL ecosystem, including
+                    changes in tournament format, broadcasting rights, and revenue-sharing arrangements, may affect
+                    KKR's financial performance and competitive position within the league.
+                    <br><br><b>Injury Management and Fitness Programs:</b> Effective injury management protocols and
+                    fitness programs are essential for ensuring player availability and performance consistency
+                    throughout the season.
+                    While it's challenging to predict the exact trajectory of KKR in the future IPL seasons, analyzing
+                    these factors can provide insights into the team's potential strengths, weaknesses, opportunities,
+                    and threats. Additionally, staying updated with team news, player developments, and IPL trends can
+                    help assess KKR's future outlook more accurately.
+            </p>
+        </div>
+    </div>
+    <!-- gallery -->
+    <div id="gallery">
+        <h1 class="headings">GALLERY</h1>
+        <img src="../IPL Website/p1.jpg" alt="" class="p1 img">
+        <img src="../IPL Website/p2.jpeg" alt="" class="p2 img">
+
+        <img src="../IPL Website/p4.avif" alt="" class="p4 img">
+        <img src="../IPL Website/p5.jpg" alt="" class="p5 img">
+        <img src="../IPL Website/p6.avif" alt="" class="p6 img">
+        <img src="../IPL Website/p7.jpg" alt="" class="p7 img">
+        <img src="../IPL Website/p8.jpg" alt="" class="p8 img">
+        <img src="../IPL Website/p9.jpg" alt="" class="p9 img">
+        <img src="../IPL Website/p10.jpg" alt="" class="p10 img">
+        <img src="../IPL Website/p12.jpg" alt="" class="p12 img">
+        <img src="../IPL Website/p11.jpg" alt="" class="p11 img">
+        <img src="../IPL Website/p13.jpg" alt="" class="p13 img">
+        <img src="../IPL Website/p14.jpg" alt="" class="p14 img">
+        <img src="../IPL Website/p15.jpg" alt="" class="p15 img">
+        <img src="../IPL Website/p16.png" alt="" class="p16 img">
+        <img src="../IPL Website/p17.jpg" alt="" class="p17 img">
+        <img src="../IPL Website/p18.jpg" alt="" class="p18 img">
+        <img src="../IPL Website/p21.jpg" alt="" class="p21 img">
+        <img src="../IPL Website/p19.jpg" alt="" class="p19 img">
+
+
+        <img src="../IPL Website/p22.jpg" alt="" class="p22 img">
+        <img src="../IPL Website/p23.jpg" alt="" class="p23 img">
+        <img src="../IPL Website/p24.jpg" alt="" class="p24 img">
+        <img src="../IPL Website/p30.jpg" alt="" class="p30 img">
+        <img src="../IPL Website/p25.jpg" alt="" class="p25 img">
+        <img src="../IPL Website/p26.jpg" alt="" class="p26 img">
+
+        <img src="../IPL Website/p28.jpg" alt="" class="p28 img">
+
+        <img src="../IPL Website/p29.jpg" alt="" class="p29 img">
+        <img src="../IPL Website/p33.jpg" alt="" class="p33 img">
+        <img src="../IPL Website/p31.jpg" alt="" class="p31 img">
+        <img src="../IPL Website/p32.jpg" alt="" class="p32 img">
+
+        <img src="../IPL Website/p34.jpg" alt="" class="p34 img">
+        <img src="../IPL Website/p35.jpg" alt="" class="p35 img">
+        <img src="../IPL Website/p36.jpg" alt="" class="p36 img">
+        <img src="../IPL Website/p37.jpg" alt="" class="p37 img">
+    </div>
+    <!-- team profile -->
+    <div id="profile">
+        <h1 class="headin">TEAM PROFILE</h1>
+        <h6>~ click for more information</h6>
+        <div class="players a">
+            <div class="t1">
+                <a href="https://en.wikipedia.org/wiki/Shreyas_Iyer">
+                    <img src="../IPL Website/captain.PNG" alt="" class="captain">
+                    <img src="../IPL Website/1.png" alt="" class="pic">
+                    <h3>SHREYAS IYER</h3>
+                </a>
+            </div>
+            <div class="t2">
+                <a href="https://en.wikipedia.org/wiki/Rinku_Singh_(cricketer)">
+                    <img src="../IPL Website/bat.PNG" alt="" class="captain">
+                    <img src="../IPL Website/2.png" alt="" class="pic">
+                    <h3>RINKU SINGH</h3>
+                </a>
+            </div>
+            <div class="t3">
+                <a href="https://en.wikipedia.org/wiki/Rahmanullah_Gurbaz">
+                    <img src="../IPL Website/bat.PNG" alt="" class="captain">
+                    <img src="../IPL Website/3.png" alt="" class="pic">
+                    <h3>RAHMANULLAH GURBAZ</h3>
+                </a>
+            </div>
+            <div class="t4">
+                <a href="https://en.wikipedia.org/wiki/Venkatesh_Iyer">
+                    <img src="../IPL Website/allrounder.PNG" alt="" class="captain">
+                    <img src="../IPL Website/4.png" alt="" class="pic">
+                    <h3>VENKATESH IYER</h3>
+                </a>
+            </div>
+        </div><br><br>
+        <div class="players b">
+            <div class="t5">
+                <a href="https://en.wikipedia.org/wiki/Sunil_Narine">
+                    <img src="../IPL Website/ball.PNG" alt="" class="captain">
+                    <img src="../IPL Website//5.png" alt="" class="pic">
+                    <h3>SUNIL NARINE</h3>
+                </a>
+            </div>
+            <div class="t6">
+                <a href="https://en.wikipedia.org/wiki/Andre_Russell">
+                    <img src="../IPL Website/allrounder.PNG" alt="" class="captain">
+                    <img src="../IPL Website//6.png" alt="" class="pic">
+                    <H3>ANDRE RUSSELL</H3>
+                </a>
+            </div>
+            <div class="t7">
+                <a href="https://en.wikipedia.org/wiki/Ramandeep_Singh_(cricketer)">
+                    <img src="../IPL Website/allrounder.PNG" alt="" class="captain">
+                    <img src="../IPL Website//7.png" alt="" class="pic">
+                    <h3>RAMANDEEP SINGH</h3>
+                </a>
+            </div>
+            <div class="t8">
+                <a href="https://en.wikipedia.org/wiki/Mitchell_Starc">
+                    <img src="../IPL Website/ball.PNG" alt="" class="captain">
+                    <img src="../IPL Website//8.png" alt="" class="pic">
+                    <h3>MITCHELL STARC</h3>
+                </a>
+            </div>
+        </div><br><br>
+        <div class="players">
+            <div class="t9">
+                <a href="https://en.wikipedia.org/wiki/Vaibhav_Arora">
+                    <img src="../IPL Website/ball.PNG" alt="" class="captain">
+                    <img src="../IPL Website//9.png" alt="" class="pic">
+                    <h3>VAIBHAV ARORA</h3>
+                </a>
+            </div>
+            <div class="t10">
+                <a href="https://en.wikipedia.org/wiki/Harshit_Rana">
+                    <img src="../IPL Website/ball.PNG" alt="" class="captain">
+                    <img src="../IPL Website//10.png" alt="" class="pic">
+                    <h3>HARSHIT RANA</h3>
+                </a>
+            </div>
+            <div class="t11">
+                <a href="https://en.wikipedia.org/wiki/Varun_Chakravarthy">
+                    <img src="../IPL Website/ball.PNG" alt="" class="captain">
+                    <img src="../IPL Website//11.png" alt="" class="pic">
+                    <H3>VARUN CHAKARAVARTHY</H3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- statistics and records -->
+    <div id="record">
+        <h1 class="headings">RECORDS</h1>
+        <div class="r1">
+            <img src="../IPL Website/record1.avif" alt="" class="rec1">
+            <h1>CHAMPIONS 2012</h1>
+        </div>
+        <div class="r2">
+            <img src="../IPL Website/record2.avif.jpg" alt="" class="rect2">
+            <h1>CHAMPIONS 2014</h1>
+        </div><br>
+        <div class="r1">
+            <img src="../IPL Website/record3.webp" alt="" class="rec1">
+            <h1>CHAMPIONS 2024</h1>
+        </div><br>
+        <!-- <div class="r3">
+            <img src="../IPL Website/record5.avif.jpg" alt="" class="rect2">
+            <h3 class="h1">ONLY ORANGE CAP WINNER FROM THE WINNING TEAM</h3>
+            <h1 class="h2">ROBIN UTHAPPA</h1>
+            <h3 class="h3">660 RUNS IN 2014 IPL</h3>
+        </div><br> -->
+    </div>
+    <!-- live -->
+    <div id="live">
+        <h1 class="headin">LIVE SESSIONS</h1>
+        <div class="div">
+            <div class="div1">
+                <h2>FAN FORUMS AND CHATS</h2>
+                <label class="lb1"> NAME : </label>
+                <input type="text" class="box"><br><br>
+                <label class="lb2"> MESSAGE : </label>
+                <input type="text" class="box1"><br><br>
+                <button class="btn">ENTER</button>
+            </div>
+            <div class="div2">
+                <h3 class="d2"></h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
