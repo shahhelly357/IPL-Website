@@ -745,7 +745,7 @@ h6 {
 
     #home {
         width: 440px;
-        height: 1310px;
+        height: 900px;
     }
 
     .team {
@@ -774,6 +774,7 @@ h6 {
 
     #about {
         height: 2000px;
+        width: 440px;
     }
 
     .history b {
@@ -793,6 +794,7 @@ h6 {
 
     #gallery {
         height: 6800px;
+        width: 440px;
     }
 
     .headings {
@@ -887,10 +889,12 @@ h6 {
 
     #profile {
         height: 800px;
+        width: 440px;
     }
 
     #record {
         height: 1100px;
+        width: 440px;
     }
 
     .t1,
@@ -1005,6 +1009,7 @@ h6 {
     }
     #live{
         height: 500px;
+        width: 440px;
     }
     .lo{
         height: 0px;
